@@ -1,17 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: ADMIN
-  Date: 7/18/2023
-  Time: 3:08 PM
+  Date: 7/20/2023
+  Time: 10:23 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Dictionary</title>
-</head>
-<body>
-<h1>Result</h1>
-<p>${result}</p>
-</body>
+  <head>
+    <title>$Title$</title>
+  </head>
+  <body>
+  $END$
+  </body>
 </html>
