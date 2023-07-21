@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+</p>
+<a th:href="@{/product/create}">Thêm mới</a><br>
+<form th:action="@{/product/search}"method="get">
+  <input type="text" name="name">
+<!--  <input th:field="*{}">-->
+  <button>Tìm kiếm</button>
+</form>
+<table border="1px">
+  <tr>
+    <th>STT</th>
+    <th>ID</th>
+    <th>Tên sản phẩm</th>
+    <th>Giá sản phẩm</th>
+    <th>Mô tả sản phẩm</th>
+    <th>Nhà sản xuất</th>
+    <th>Chi tiết</th>
+    <th colspan="2">hành động</th>
+  </tr>
+  <tr th:each="p,status: ${list}">
+    <td th:text="${status.count}">
+    </td>
+    <td th:text="${p.id}"></td>
+    <td th:text="${p.name}"></td>
+    <td th:text="${p.price}"></td>
+    <td th:text="${p.description}"></td>
+    <td th:text="${p.producer}"></td>
+    <td><a th:href="@{/product/view/__${p.id}__}">Chi tiết</a> </td>
+    <td><a th:href="@{/product/remove(id=${p.id})}">Xóa</a> </td>
+    <td><a th:href="@{/product/update/__${p.id}__}">Chỉnh sửa</a> </td>
+  </tr>
+</table>
+</body>
+</html>
