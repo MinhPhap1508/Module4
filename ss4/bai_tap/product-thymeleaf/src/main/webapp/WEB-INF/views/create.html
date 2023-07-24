@@ -6,9 +6,7 @@
 </head>
 <body>
 <h2>Thêm mới</h2>
-<form th:action="@{/product/create}" method="post" th:object="${product}">
-    Id
-    <input type="number" th:field="*{id}" required><br>
+<form class="form-select-button" th:action="@{/product/create}" method="post" th:object="${product}">
     Tên sản phẩm
     <input th:field="*{name}" required><br>
     Giá sản phẩm

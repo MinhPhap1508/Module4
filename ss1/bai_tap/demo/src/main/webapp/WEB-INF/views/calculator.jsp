@@ -13,8 +13,10 @@
 <body>
 <form action="/calculate" method="post">
 <input type="number" name="usd" placeholder="Enter usd"> <br>
-<input type="number" name="percent" placeholder="Enter rate"> <br>
-<button>Chuyển đổi </button>
+<input type="number" name="rate" placeholder="Enter rate"> <br>
+<button>Convert </button>
 </form>
+Rate after conversion is:
+<span>${result}</span>
 </body>
 </html>

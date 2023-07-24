@@ -16,7 +16,7 @@ public class DicRepository implements  IDicRepository{
         stringMap.put("apple", "Quả Táo");
     }
     @Override
-    public String translate(String words) {
-        return stringMap.get(words);
+    public String translate(String word) {
+        return stringMap.get(word);
     }
 }

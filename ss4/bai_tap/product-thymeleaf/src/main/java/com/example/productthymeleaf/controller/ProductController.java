@@ -31,14 +31,16 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute Product product) {
+    public String create(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
         productService.addProduct(product);
+        redirectAttributes.addFlashAttribute("message","Thêm mới thành công");
         return "redirect:/product";
     }
 
     @GetMapping("/remove")
-    public String remove(@ModelAttribute Product product) {
+    public String remove(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
         productService.remove(product.getId());
+        redirectAttributes.addFlashAttribute("message"," Xóa thành công");
         return "redirect:/product";
     }
 
@@ -48,8 +50,9 @@ public class ProductController {
         return "/update";
     }
     @PostMapping("/update")
-    public String update(@ModelAttribute Product product){
+    public String update(@ModelAttribute Product product, RedirectAttributes redirectAttributes){
         productService.updateProduct(product.getId(),product);
+        redirectAttributes.addFlashAttribute("message","Chỉnh sửa thành công");
         return "redirect:/product";
     }
     @GetMapping("/view/{id}")

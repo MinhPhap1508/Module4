@@ -9,11 +9,11 @@ public class DicService implements IDicService{
     @Autowired
     private IDicRepository dicRepository;
     @Override
-    public String translate(String words) {
-        String translate = dicRepository.translate(words);
+    public String translate(String word) {
+        String translate = dicRepository.translate(word);
         if(translate != null){
             return translate;
         }
-        return "Do not Found";
+        return "No Result";
     }
 }

@@ -13,8 +13,9 @@
 <body>
 <form action="/translator" method="post">
     <label>Words</label>
-    <input type="text" name="words" placeholder="Enter the words">
+    <input type="text" name="word" placeholder="Enter the word">
     <button>Search</button>
 </form>
+<p>${result}</p>
 </body>
 </html>

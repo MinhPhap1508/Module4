@@ -3,63 +3,71 @@ package com.example.productthymeleaf.repository;
 import com.example.productthymeleaf.model.Product;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class ProductRepository implements IProductRepository {
-    private static List<Product> productList = new ArrayList<>();
-
-    static {
-        productList.add(new Product(1, "Xiaomi", 999999, "Mi 12 Ultra", "China"));
-        productList.add(new Product(2, "Apple", 7777777, "Iphone 12", "USA"));
-        productList.add(new Product(3, "SamSung", 666666, "SamSung Galaxy Z Fold 4", "Korea"));
-    }
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public List<Product> displayAll() {
-        return productList;
+        TypedQuery<Product> query = entityManager.createQuery("from Product ", Product.class);
+        return query.getResultList();
     }
 
+    @Transactional
     @Override
     public void addProduct(Product product) {
-        productList.add(product);
-    }
+        try {
+            entityManager.persist(product);
 
-    @Override
-    public void updateProduct(int id, Product product) {
-        for (int i = 0; i < productList.size(); i++) {
-            if (productList.get(i).getId() == id) {
-                productList.set(i,product);
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+    @Transactional
+    @Override
+
+    public void updateProduct(int id, Product product) {
+        Product product1 = getByID(id);
+        product1.setName(product.getName());
+        product1.setPrice(product.getPrice());
+        product1.setDescription(product.getDescription());
+        product1.setProducer(product.getProducer());
+        entityManager.merge(product1);
+    }
+
+    @Transactional
     @Override
     public void remove(int id) {
-        for (int i = 0; i < productList.size(); i++) {
-            if (productList.get(i).getId() == id) {
-                productList.remove(i);
-            }
+        Product product = getByID(id);
+        if (product != null) {
+            entityManager.remove(product);
         }
     }
 
     @Override
     public Product getByID(int id) {
-        for (int i = 0; i < productList.size(); i++) {
-            if(productList.get(i).getId()==id){
-                return productList.get(i);
-            }
-        }
-        return null;
+        Product product = entityManager.find(Product.class, id);
+        return product;
     }
 
     @Override
     public List<Product> search(String name) {
         List<Product> products = new ArrayList<>();
-        for (Product p: productList) {
-            if(p.getName().contains(name))
-                products.add(p);
+        TypedQuery<Product> query = entityManager.createQuery("from Product ", Product.class);
+        List<Product> productList= query.getResultList();
+        for (int i = 0; i < productList.size(); i++) {
+            if(productList.get(i).getName().contains(name)){
+                products.add(productList.get(i));
+            }
         }
         return products;
     }

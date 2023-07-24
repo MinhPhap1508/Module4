@@ -1,6 +1,14 @@
 package com.example.productthymeleaf.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private double price;
@@ -8,6 +16,13 @@ public class Product {
     private String producer;
 
     public Product() {
+    }
+
+    public Product(String name, double price, String description, String producer) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.producer = producer;
     }
 
     public Product(int id, String name, double price, String description, String producer) {

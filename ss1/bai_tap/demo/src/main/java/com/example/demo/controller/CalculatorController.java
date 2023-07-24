@@ -20,10 +20,10 @@ public class CalculatorController {
     }
 
     @PostMapping("/calculate")
-    public String showCalculator(@RequestParam double usd, @RequestParam double percent, Model model) {
-      double result = calculatorService.calculator(usd, percent);
+    public String showCalculator(@RequestParam double usd, @RequestParam double rate, Model model) {
+      double result = calculatorService.calculator(usd, rate);
         model.addAttribute("result", result);
-        return "/result";
+        return "/calculator";
     }
 
 }

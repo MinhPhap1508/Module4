@@ -17,9 +17,9 @@ public class DictionaryController {
         return "/translateForm";
     }
     @PostMapping("/translator")
-    public String translate(@RequestParam String words, Model model){
-        String result = dicService.translate(words);
+    public String translate(@RequestParam String word, Model model){
+        String result = dicService.translate(word);
         model.addAttribute("result", result);
-        return "/translate";
+        return "/translateForm";
     }
 }

@@ -7,7 +7,7 @@ public class CalculatorService implements ICalculatorService {
 
 
     @Override
-    public double calculator(double money, double percent) {
-        return money*percent;
+    public double calculator(double money, double rate) {
+        return money*rate;
     }
 }
