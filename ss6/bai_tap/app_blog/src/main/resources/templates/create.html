@@ -3,25 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Blogs</title>
+    <style>
+        label {
+            font-weight: bold;
+        }
+
+        button {
+            margin-left: 1100px;
+            display: inline-block;
+            font-size: 16px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+            border: 2px solid #008CBA;
+        }
+
+        button:hover {
+            background-color: #008CBA;
+            color: white;
+        }
+
+        input, textarea {
+            display: inline-block;
+            vertical-align: middle;
+            width: 95%;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: blue;
+            box-shadow: 0 0 10px blue;
+        }
+
+        select {
+            width: 200px;
+            font-size: 16px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <form th:action="@{/blog/create}" method="post" th:object="${blog}">
-    Tên Blog
-    <input th:field="*{name}" required><br>
-    Nội dung
-    <input th:field="*{content}" required><br>
-    Ngày sáng tác
-    <input th:field="*{date}" required><br>
-    Tên tác giả
-    <input th:field="*{author}" required><br>
-    Thể loại
-    <select th:field="*{category}">
-        <option value="">--Thể loại--</option>
-        <option th:each="cate : ${category}"
-        th:value="${cate.id}" th:text="${cate.name}">
-        </option>
-    </select>
-    <button>Thêm mới</button>
+    <fieldset>
+        <label for="na">Tên Blog</label>
+        <input th:field="*{name}" id="na" required><br>
+        <label for="co">Nội dung</label>
+        <textarea th:field="*{content}" id="co" required></textarea><br>
+        <label for="da">Ngày sáng tác</label>
+        <input th:field="*{date}" id="da" required><br>
+        <label for="au">Tên tác giả</label>
+        <input th:field="*{author}" id="au" required><br>
+        <label for="ca">Thể loại</label><br>
+        <select th:field="*{category}" id="ca">
+            <option value="">--Thể loại--</option>
+            <option th:each="cate : ${category}"
+                    th:value="${cate.id}" th:text="${cate.name}">
+            </option>
+        </select><br>
+        <button>Đăng blog</button>
+    </fieldset>
 </form>
 </body>
 </html>
