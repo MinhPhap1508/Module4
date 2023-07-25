@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface IBlogService {
     List<Blog> showList();
+
     void addBlog(Blog blog);
+
     void delete(int id);
+
+    Blog getById(int id);
 }

@@ -23,8 +23,9 @@
             <th>Tên blog</th>
             <th>Nội dung</th>
             <th>Ngày sáng tác</th>
-            <th>Tên tác giả</th>
+            <th>Tác giả</th>
             <th>Thể loại</th>
+            <th>Chi tiết</th>
             <th>Xóa Blog</th>
         </tr>
         <tr th:each="b, status: ${blog}">
@@ -34,9 +35,11 @@
             <td th:text="${b.date}"></td>
             <td th:text="${b.author}"></td>
             <td th:text="${b.category.name}"></td>
+            <td><button class="btn btn-info"><a th:href="@{/blog/info/__${b.id}__}">Chi tiết</a></button></td>
             <td><button class="btn btn-danger"><a th:href="@{/blog/delete(id=${b.id})}">Xóa</a></button></td>
         </tr>
     </table>
+    <p th:if="${msg}" th:text="${msg}" style="color:red;"></p>
 </div>
 </body>
 </html>
