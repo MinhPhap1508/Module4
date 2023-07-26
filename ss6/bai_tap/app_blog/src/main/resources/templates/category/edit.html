@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+</head>
+<body>
+<form th:action="@{/category/edit}" method="post" th:object="${category}">
+
+  <fieldset>
+    <input type="hidden" th:field="*{id}">
+    <label for="na">Tên Blog</label>
+    <input th:field="*{name}" id="na" required><br>
+    <button>Cập nhật danh mục</button>
+  </fieldset>
+</form>
+</body>
+</html>

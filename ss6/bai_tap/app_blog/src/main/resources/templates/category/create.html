@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+</head>
+<body>
+<form th:action="@{/category/create}" method="post" th:object="${category}">
+  <fieldset>
+    <label for="na">Tên danh mục</label>
+    <input th:field="*{name}" id="na" required><br>
+    <button>Thêm danh mục</button>
+  </fieldset>
+</form>
+</body>
+</html>

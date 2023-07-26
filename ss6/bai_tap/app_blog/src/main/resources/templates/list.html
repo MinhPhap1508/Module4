@@ -6,16 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-    a{
-        text-decoration: none;
-        color: white;
-    }
-</style>
+    <style>
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        input {
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+        input:hover {
+            border-color: black;
+            background-color: lightblue;
+        }
+        input:focus {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-3">
-    <h1>BLOGs</h1>
+    <h1>BLOGs</h1><h2><a th:href="@{/category}" style="color: black">Quản lý danh mục</a></h2>
+    <form th:action="@{/blog}">
+        <input class="input-style" type="text" th:name="searchName">
+        <button class="btn btn-outline-primary"> Tìm kiếm</button>
+    </form>
     <button class="btn btn-primary"><a th:href="@{/blog/create}">Thêm mới</a></button>
     <table class="table table-hover">
         <tr>
@@ -26,19 +43,31 @@
             <th>Tác giả</th>
             <th>Thể loại</th>
             <th>Chi tiết</th>
-            <th>Xóa Blog</th>
+            <th colspan="2">Thao tác với Blogs</th>
         </tr>
-        <tr th:each="b, status: ${blog}">
-            <td th:text="${status.count}"></td>
+        <tr th:each="b, status: ${blogPage}">
+            <td th:text="${blogPage.number*2+status.count}"></td>
             <td th:text="${b.name}"></td>
-            <td th:text="${b.content}"></td>
+            <!--Giới hạn nội dung hiển thị-->
+            <td th:text="${#strings.abbreviate(b.content, 12)}" ></td>
+            <!--<td th:text="${b.content}"></td>-->
             <td th:text="${b.date}"></td>
             <td th:text="${b.author}"></td>
             <td th:text="${b.category.name}"></td>
-            <td><button class="btn btn-info"><a th:href="@{/blog/info/__${b.id}__}">Chi tiết</a></button></td>
-            <td><button class="btn btn-danger"><a th:href="@{/blog/delete(id=${b.id})}">Xóa</a></button></td>
+            <td>
+                <button class="btn btn-info"><a th:href="@{/blog/info/__${b.id}__}">Xem Blog</a></button>
+            </td>
+            <td>
+                <button class="btn btn-warning"><a th:href="@{/blog/edit(id=${b.id})}">Cập nhật</a></button>
+            </td>
+            <td>
+                <button class="btn btn-danger"><a th:href="@{/blog/delete(id=${b.id})}">Xóa Blog</a></button>
+            </td>
         </tr>
     </table>
+    <a th:if="${blogPage.hasPrevious()}" th:href="@{/blog(page=${blogPage.number-1},searchName=${searchName})}" style="color: blue">Prev</a>
+    <span th:text="${blogPage.number+1}"></span>/<span th:text="${blogPage.totalPages}"></span>
+    <a th:if="${blogPage.hasNext()}" th:href="@{blog(page=${blogPage.number+1},searchName=${searchName})}" style="color: blue">Next</a>
     <p th:if="${msg}" th:text="${msg}" style="color:red;"></p>
 </div>
 </body>

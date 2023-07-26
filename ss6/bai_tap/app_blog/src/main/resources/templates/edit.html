@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Blogs</title>
+    <title>Title</title>
     <style>
         label {
             font-weight: bold;
@@ -47,24 +47,26 @@
     </style>
 </head>
 <body>
-<form th:action="@{/blog/create}" method="post" th:object="${blog}">
+<form th:action="@{/blog/edit}" method="post" th:object="${blog}">
+
     <fieldset>
+        <input type="hidden" th:field="*{id}">
         <label for="na">Tên Blog</label>
         <input th:field="*{name}" id="na" required><br>
         <label for="co">Nội dung</label>
         <textarea th:field="*{content}" id="co" required></textarea><br>
         <label for="da">Ngày sáng tác</label>
-        <input type="date" th:field="*{date}" id="da" required><br>
+        <input th:field="*{date}" id="da" required><br>
         <label for="au">Tên tác giả</label>
         <input th:field="*{author}" id="au" required><br>
         <label for="ca">Thể loại</label><br>
         <select th:field="*{category}" id="ca">
             <option value="">--Thể loại--</option>
-            <option th:each="cate : ${category}"
+            <option th:each="cate : ${categoryList}"
                     th:value="${cate.id}" th:text="${cate.name}">
             </option>
         </select><br>
-        <button>Đăng blog</button>
+        <button>Cập nhật blog</button>
     </fieldset>
 </form>
 </body>
