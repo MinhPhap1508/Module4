@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+
+    <style>
+        .row {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .line {
+            width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+        }
+        p{
+            font-weight: bold;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+<fieldset>
+    <legend th:text="${book.name}"></legend>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="line">
+                <p>Author:</p>
+                <span th:text="${book.author}"></span>
+            </div>
+
+            <div class="line">
+                <p>Info:</p>
+                <span th:text="${book.info}"></span>
+            </div>
+
+            <div class="line">
+                <p>Quantity:</p>
+                <span th:text="${book.quantity}"></span>
+            </div>
+            <div>
+                <button class="btn btn-outline-warning"><a th:href="@{/book/borrow/{id}(id=${book.getId()})}">Borrow Book</a></button>
+            </div>
+
+        </div>
+        <div class="col-lg-9">
+            <img th:src="@{${book.img}}" alt="" style="width: auto;height: 400px">
+        </div>
+    </div>
+</fieldset>
+</body>
+</html>
