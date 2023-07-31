@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+    <a href="/shop">Shop</a>
+</p>
+<h1>Your Cart</h1>
+<p th:if="msg" th:text="${msg}"></p>
+<form th:action="@{/shop}" th:object="${cart}" method="post">
+    <h3>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h3>
+    <h3>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Img</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Quantity</th>
+    </tr>
+    <tr th:each="p:${cart.productMap}">
+        <td th:text="${p.getKey().name}"></td>
+        <td th:src="@{${p.getKey().img}}"></td>
+        <td th:text="${p.getKey().price}"></td>
+        <td th:text="${p.getKey().description}"></td>
+        <td>
+            <a id="decrease_button" th:if="${p.getKey()>0}" th:href="@{/remove/__${p.getKey().id}__(action='show')}" th:text="${'-'}"></a>
+            <span th:text="${p.getKey()}"></span>
+            <a id="increase_button" th:href="@{/add/__${p.getKey().id}__(action='show')}" th:text="${'+'}"></a>
+        </td>
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td></td>
+        <td th:text="${cart.countTotalPayment()}"></td>
+    </tr>
+    <a th:href="@{/pay}">Payment</a>
+    </tr>
+</table>
+</form>
+</body>
+</html>
