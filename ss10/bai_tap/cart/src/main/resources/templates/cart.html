@@ -27,9 +27,9 @@
         <td th:text="${p.getKey().price}"></td>
         <td th:text="${p.getKey().description}"></td>
         <td>
-            <a id="decrease_button" th:if="${p.getKey()>0}" th:href="@{/remove/__${p.getKey().id}__(action='show')}" th:text="${'-'}"></a>
+            <a id="decrease_button" th:if="${p.getKey()>0}" th:href="@{/shop/remove/__${p.getKey().id}__(action='show')}" th:text="${'-'}"></a>
             <span th:text="${p.getKey()}"></span>
-            <a id="increase_button" th:href="@{/add/__${p.getKey().id}__(action='show')}" th:text="${'+'}"></a>
+            <a id="increase_button" th:href="@{/shop/add/__${p.getKey().id}__(action='show')}" th:text="${'+'}"></a>
         </td>
     </tr>
     <tr>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Category</title>
@@ -26,7 +26,7 @@
         </tr>
         <tr th:each="b, status: ${categoryPage}">
             <td th:text="${categoryPage.number*2+status.count}"></td>
-            <td><a th:href="@{/category/info/__${b.id}__}" th:text="${b.name}"></a></td>
+            <td><a th:text="${b.name}" th:href="@{/category/info/__${b.id}__}"></a></td>
             <td>
                 <button class="btn btn-warning"><a th:href="@{/category/edit(id=${b.id})}">Cập nhật</a></button>
             </td>

@@ -20,7 +20,7 @@ public class User implements Validator {
 //    @NotEmpty
 //    @Size(min = 5, max = 45)
     private String lastName;
-    @Pattern(regexp = "^[0-9]{10}$", message = "Wrong format")
+    @Pattern(regexp = "^[0-9]{10}$", message = "Wrong number phone format")
     private String phoneNumber;
     @Min(18)
     private int age;
@@ -88,14 +88,14 @@ public class User implements Validator {
     public void validate(Object target, Errors errors) {
         User user = (User) target;
         if(user.getFirstName().equals("")){
-            errors.rejectValue("firstName",null,"Not Empty");
+            errors.rejectValue("firstName",null,"Name Cannot Empty");
         } else if (!user.getFirstName().matches("^[a-zA-Z ]{5,45}$")) {
-            errors.rejectValue("firstName", null,"Wrong Format");
+            errors.rejectValue("firstName", null,"Wrong Name Format");
         }
         if(user.getLastName().equals("")){
-            errors.rejectValue("lastName",null,"Not Empty");
+            errors.rejectValue("lastName",null,"Name Cannot Empty");
         } else if (!user.getLastName().matches("^[a-zA-Z ]{5,45}$")) {
-            errors.rejectValue("lastName", null,"Wrong Format");
+            errors.rejectValue("lastName", null,"Wrong Name Format");
         }
     }
 }

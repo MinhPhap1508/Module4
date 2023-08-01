@@ -74,4 +74,16 @@ public class Blog {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", content='" + content + '\'' +
+                ", date='" + date + '\'' +
+                ", author='" + author + '\'' +
+                ", category=" + category +
+                '}';
+    }
 }

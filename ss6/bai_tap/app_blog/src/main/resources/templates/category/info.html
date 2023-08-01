@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Category</title>
@@ -16,17 +16,15 @@
     <th>Ngày sáng tác</th>
     <th>Tác giả</th>
     <th>Thể loại</th>
-
   </tr>
-  <tr th:each="b,status: ${blogPage}">
-    <td th:text="${blogPage.number*2+status.count}"></td>
-    <td th:text="${b.name}"></td>
+  <tr th:each="c,status : ${category.blogSet}">
+    <td th:text="${status.count}"></td>
+    <td th:text="${c.name}"></td>
     <!--Giới hạn nội dung hiển thị-->
-    <td th:text="${#strings.abbreviate(b.content, 12)}" ></td>
-    <!--<td th:text="${b.content}"></td>-->
-    <td th:text="${b.date}"></td>
-    <td th:text="${b.author}"></td>
-    <td th:text="${b.category.name}"></td>
+    <td th:text="${#strings.abbreviate(c.content, 12)}" ></td>
+    <td th:text="${c.date}"></td>
+    <td th:text="${c.author}"></td>
+    <td th:text="${c.category.name}"></td>
   </tr>
 </table>
 </body>

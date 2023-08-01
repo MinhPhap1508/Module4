@@ -21,7 +21,7 @@
                             <form th:action="@{/music/update}" method="post" th:object="${musicDto}">
                                 <div><input type="hidden" th:field="*{id}"></div>
                                 <div class="form-outline mb-4">
-                                    <small style="color: red" th:if="${#fields.hasErrors('name')}"
+                                    <small style="color: red" th:if="${#fields.hasErrors()}"
                                            th:errors="*{name}"></small>
                                     <input type="text" id="form3Example1cg" class="form-control form-control-lg"
                                            th:field="*{name}"/>
@@ -29,7 +29,7 @@
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <small style="color: red" th:if="${#fields.hasErrors('signer')}"
+                                    <small style="color: red" th:if="${#fields.hasErrors()}"
                                            th:errors="*{signer}"></small>
                                     <input type="text" id="form3Example3cg" class="form-control form-control-lg"
                                            th:field="*{signer}"/>
@@ -37,7 +37,7 @@
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <small style="color: red" th:if="${#fields.hasErrors('kindOfMusic')}"
+                                    <small style="color: red" th:if="${#fields.hasErrors()}"
                                            th:errors="*{kindOfMusic}"></small>
                                     <input type="text" id="form3Example4cg" class="form-control form-control-lg"
                                            th:field="*{kindOfMusic}"/>

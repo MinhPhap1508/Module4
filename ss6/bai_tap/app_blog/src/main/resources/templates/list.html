@@ -67,7 +67,7 @@
     </table>
     <a th:if="${blogPage.hasPrevious()}" th:href="@{/blog(page=${blogPage.number-1},searchName=${searchName})}" style="color: blue">Prev</a>
     <span th:text="${blogPage.number+1}"></span>/<span th:text="${blogPage.totalPages}"></span>
-    <a th:if="${blogPage.hasNext()}" th:href="@{blog(page=${blogPage.number+1},searchName=${searchName})}" style="color: blue">Next</a>
+    <a th:if="${blogPage.hasNext()}" th:href="@{/blog(page=${blogPage.number+1},searchName=${searchName})}" style="color: blue">Next</a>
     <p th:if="${msg}" th:text="${msg}" style="color:red;"></p>
 </div>
 </body>

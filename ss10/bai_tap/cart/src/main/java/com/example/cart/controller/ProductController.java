@@ -4,16 +4,12 @@ package com.example.cart.controller;
 import com.example.cart.model.Cart;
 import com.example.cart.model.Product;
 import com.example.cart.service.IProductService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Controller
@@ -35,16 +31,6 @@ public class ProductController {
         return modelAndView;
     }
 
-//    @GetMapping("/detail/{id}")
-//    public ModelAndView showDetail(@PathVariable long id, HttpServletResponse response) {
-//
-//        Cookie cookie = new Cookie("productId", id + "");
-//        cookie.setMaxAge(1 * 24 * 60 * 60);
-//        cookie.setPath("/");
-//        response.addCookie(cookie);
-//        return new ModelAndView("/detail",
-//                "product", productService.findById(id));
-//    }
     @RequestMapping("/detail/{id}")
     public ModelAndView showDetail(@PathVariable Long id){
         ModelAndView modelAndView = new ModelAndView("/detail");
@@ -56,6 +42,7 @@ public class ProductController {
     public String addToCart(@PathVariable Long id,
                             @ModelAttribute Cart cart,
                             @RequestParam("action") String action) {
+        System.out.println(action);
         Optional<Product> productOptional = productService.findById(id);
         if (!productOptional.isPresent()) {
             return "/error";

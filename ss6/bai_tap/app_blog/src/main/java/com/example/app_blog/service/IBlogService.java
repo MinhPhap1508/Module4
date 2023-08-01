@@ -13,7 +13,11 @@ public interface IBlogService {
     void addBlog(Blog blog);
 
     void delete(int id);
+    void deleteBlog(Blog blog);
 
     Blog getById(int id);
     void edit(Blog blog);
+    List<Blog> findByName(String name);
+
+    List<Blog> blogList(int idCategory);
 }

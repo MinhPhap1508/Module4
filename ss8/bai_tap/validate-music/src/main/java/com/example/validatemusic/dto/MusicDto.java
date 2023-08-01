@@ -50,21 +50,21 @@ public class MusicDto implements Validator {
     public void validate(Object target, Errors errors) {
         MusicDto musicDto = (MusicDto) target;
         if(musicDto.getName().equals("")){
-            errors.rejectValue("name",null,"Not Empty");
+            errors.rejectValue("name",null,"Name Cannot Empty");
         } else if (musicDto.getName().length()>800) {
             errors.rejectValue("name",null,"Name is to long");
         } else if (!musicDto.getName().matches("^[a-zA-Z0-9]*$")) {
             errors.rejectValue("name", null, "Name can't contain special characters");
         }
         if(musicDto.getSigner().equals("")){
-            errors.rejectValue("signer",null,"Not Empty");
+            errors.rejectValue("signer",null,"Name Cannot Empty");
         } else if (musicDto.getSigner().length()>300) {
             errors.rejectValue("signer",null,"Name is to long");
         } else if (!musicDto.getSigner().matches("^[a-zA-Z0-9]*$")) {
             errors.rejectValue("signer", null, "Name can't contain special characters");
         }
         if(musicDto.getKindOfMusic().equals("")){
-            errors.rejectValue("kindOfMusic",null,"Not Empty");
+            errors.rejectValue("kindOfMusic",null,"Name Cannot Empty");
         } else if (musicDto.getKindOfMusic().length()>1000) {
             errors.rejectValue("kindOfMusic",null,"Name is to long");
         } else if (!musicDto.getKindOfMusic().matches("^[a-zA-Z0-9,]*$")) {
