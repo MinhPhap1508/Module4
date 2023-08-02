@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <script src="../jquery-3.7.0.min.js"></script>
+
+</head>
+<body>
+<h1>Blog</h1>
+<table border="1px">
+    <tr>
+        <th>STT</th>
+        <th>Tên blog</th>
+        <th>Nội dung</th>
+        <th>Ngày sáng tác</th>
+        <th>Tác giả</th>
+        <th>Thể loại</th>
+    </tr>
+    <tbody id="content">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    function display() {
+        let content = "";
+        $.ajax({
+                contentType: "application/json",
+                method: "GET",
+                dataType: "json",
+                url: "http://localhost:8080/api/blog",
+                success: function (data) {
+                    for (let i = 0; i < data.length; i++) {
+                        content += `<tr>
+                                        <td>${i + 1}}</td>
+                                        <td>${data[i].name}</td>
+                                        <td>${data[i].content}</td>
+                                        <td>${data[i].date}</td>
+                                        <td>${data[i].author}</td>
+                                        <td>${data[i].category.name}</td>
+                                    </tr>`
+                    }
+                    $("#content").html(content);
+                }
+            }
+        )
+    }
+
+    display()
+</script>
+</body>
+</html>
