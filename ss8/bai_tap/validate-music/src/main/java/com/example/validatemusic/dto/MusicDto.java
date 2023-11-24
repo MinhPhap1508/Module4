@@ -53,7 +53,7 @@ public class MusicDto implements Validator {
             errors.rejectValue("name",null,"Name Cannot Empty");
         } else if (musicDto.getName().length()>800) {
             errors.rejectValue("name",null,"Name is to long");
-        } else if (!musicDto.getName().matches("^[a-zA-Z0-9]*$")) {
+        } else if (!musicDto.getName().matches("^[a-zA-Z0-9]*$  ")) {
             errors.rejectValue("name", null, "Name can't contain special characters");
         }
         if(musicDto.getSigner().equals("")){

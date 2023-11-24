@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <script src="jquery-3.7.0.min.js"></script>
+</head>
+<body>
+<h1>Blog</h1>
+
+<input id="search">
+<button onclick="display()" type="button">Search</button>
+
+<table border="1px">
+    <tr>
+        <th>STT</th>
+        <th>Tên blog</th>
+        <th>Nội dung</th>
+        <th>Ngày sáng tác</th>
+        <th>Tác giả</th>
+        <th>Thể loại</th>
+    </tr>
+    <tbody id="content">
+    </tbody>
+</table>
+<button onclick="page()" style="margin: 20px">Read More</button>
+<script>
+    function display() {
+        let content = "";
+        let name=$('#search').val();
+        $.ajax({
+                contentType: "application/json",
+                method: "GET",
+                dataType: "json",
+                url: "http://localhost:8080/api/blog?searchName="+name,
+                success: function (data) {
+                    for (let i = 0; i < data.content.length; i++) {
+                        content += `<tr>
+                                        <td>${i + 1}</td>
+                                        <td>${data.content[i].name}</td>
+                                        <td>${data.content[i].content}</td>
+                                        <td>${data.content[i].date}</td>
+                                        <td>${data.content[i].author}</td>
+                                        <td>${data.content[i].category.name}</td>
+                                    </tr>`
+                    }
+                    $("#content").html(content);
+                }
+            }
+        )
+    }
+    function page() {
+        let content = "";
+        pageBlog= page+1;
+        $.ajax({
+                contentType: "application/json",
+                method: "GET",
+                dataType: "json",
+                url: "http://localhost:8080/api/blog?page="+pageBlog,
+                success: function (data) {
+                    for (let i = 0; i < data.content.length; i++) {
+                        content += `<tr>
+                                        <td>${i + 1}</td>
+                                        <td>${data.content[i].name}</td>
+                                        <td>${data.content[i].content}</td>
+                                        <td>${data.content[i].date}</td>
+                                        <td>${data.content[i].author}</td>
+                                        <td>${data.content[i].category.name}</td>
+                                    </tr>`
+                    }
+                    $("#content").append(content);
+                }
+            }
+        )
+    }
+    display()
+
+</script>
+</body>
+</html>

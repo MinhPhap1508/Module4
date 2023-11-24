@@ -63,8 +63,8 @@ public class ProductController {
     @GetMapping("/search")
     public String search(@RequestParam String name, Model model){
         List<Product> productList = productService.search(name);
-        model.addAttribute("product", productList);
-        return "/search";
+        model.addAttribute("list", productList);
+        return "/list";
     }
 
 }
